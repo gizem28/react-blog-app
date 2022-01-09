@@ -12,7 +12,8 @@ const BlogForm = () => {
 //         setSearchTerm("")
 //     }
     return(
-        <Navbar expand="lg" style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown"}}>
+        <Navbar expand="lg" style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown",
+        borderBottom:"1px solid brown"}}>
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px'}}

@@ -2,8 +2,18 @@
   color:#977251;
   font-size: 20px;
   margin-left: 10px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .App{
   text-align: center;
+}
+
+h1{
+  color: #977251;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.dashboard{
+  margin-top: 20px;
 }
