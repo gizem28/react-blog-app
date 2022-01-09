@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .link {
   color:#977251;
   font-size: 20px;
@@ -16,4 +21,17 @@ h1{
 
 .dashboard{
   margin-top: 20px;
+  min-height: 70vh;
+  border-bottom:solid, 1px, brown;
+}
+
+footer{
+  background-color:#FCF9F4  ;
+  height: 10vh;
+  color: #977251;
+  font-weight: 500;
+}
+
+footer div{
+  padding-top: 8px;
 }
