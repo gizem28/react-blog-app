@@ -1,11 +1,13 @@
-import Navbar from './components/Navbar';
+import MyNav from './components/MyNavbar';
 import './App.css';
 import Dashboard from './pages/Dashboard';
+import BlogForm from './components/BlogForm';
 
 function App() {
   return (
     <div className="App">
-    <Navbar/>
+    <MyNav/>
+    <BlogForm/>
     <Dashboard/>
     </div>
   );
