@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, FormControl, Nav, Navbar, Form} from 'react-bootstrap';
+import { useNavigate } from 'react-router';
 
 const BlogForm = () => {
 // const handleSubmit=(e)=>{
@@ -11,17 +12,22 @@ const BlogForm = () => {
 //         }
 //         setSearchTerm("")
 //     }
+
+const navigate =useNavigate();
     return(
-        <Navbar expand="lg" style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown",
-        borderBottom:"1px solid brown"}}>
+        <Navbar expand="lg" 
+        style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown",borderBottom:"1px solid brown"}}
+        onSelect={(eventKey)=>{
+        navigate(`/${eventKey}`)
+        }}>
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px'}}
               navbarScroll
             >
-              <Nav.Link className='link' style={{marginLeft:20}} href="#about">About</Nav.Link>
-              <Nav.Link className='link' href="#register">Join Us</Nav.Link>
-              <Nav.Link className='link' href="#contact">
+              <Nav.Link className='link' eventKey="about" style={{marginLeft:20}}>About</Nav.Link>
+              <Nav.Link className='link' eventKey="register">Join Us</Nav.Link>
+              <Nav.Link className='link' eventKey="contact">
                 Contact Us
               </Nav.Link>
             </Nav>

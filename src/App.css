@@ -30,6 +30,8 @@ footer{
   height: 10vh;
   color: #977251;
   font-weight: 500;
+  position: fixed;
+  bottom: 0px;
 }
 
 footer div{
