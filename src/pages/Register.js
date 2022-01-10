@@ -28,7 +28,7 @@ export default function SignUp() {
   return (
       <div style={{backgroundImage:`url(${img})`,
     backgroundRepeat:" no-repeat",
-    backgroundSize: "100% 100%",
+    backgroundSize: "100% 120%",
      height:"75vh"}}>
     <ThemeProvider theme={theme} >
       <Container style={{marginTop:0, paddingTop:40}} component="main" maxWidth="xs" >
