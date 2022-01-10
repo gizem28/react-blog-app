@@ -5,10 +5,15 @@ import About from "../pages/About"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 import Contact from "../pages/Contact"
+import MyNav from '../components/MyNavbar'
+import Footer from "../components/Footer"
+import BlogForm from '../components/BlogForm'
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
+        <MyNav/>
+        <BlogForm/>
         <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
@@ -16,6 +21,7 @@ const AppRouter = () => {
             <Route  path="/login" element={<Login/>} />
             <Route  path="/register" element={<Register/>}/>
         </Routes>
+        <Footer/>
         </BrowserRouter>
     )
 }

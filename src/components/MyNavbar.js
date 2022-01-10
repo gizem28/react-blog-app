@@ -4,6 +4,7 @@ import logo from "../assets/bloglogo.png";
 import { useNavigate } from 'react-router-dom';
 
 
+
 const MyNav = () => {
   // useNavigate en ustte tanimlanmasi gereken bir hook
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const MyNav = () => {
                     Login
                   </NavDropdown.Item>
                   <NavDropdown.Item className='h4' eventKey="register">
-                    Register
+                    Sign Up
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
