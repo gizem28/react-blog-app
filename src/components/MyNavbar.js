@@ -26,11 +26,16 @@ const MyNav = () => {
         <img src={logo} alt="Blog" style={{height: 90}} />
       </Nav.Link>
       <Nav className="ms-auto">
-        { user ? (<NavLink className="h4 p-4"
+        { user ? (<Nav className="h5 p-4">
+        <NavLink
         style={{fontWeight: "bold", color: "#977251" }}
         onClick={signOutFunc}>
-          Log out
-          </NavLink>):
+          Sign Out
+        </NavLink>
+        <NavLink style={{fontWeight: "bold", color: "#977251" }}>
+          New Blog
+          </NavLink>
+          </Nav>):
           (<NavDropdown
             className="h4"
             style={{ paddingRight: 55, fontWeight: "bold", color: "brown" }}
