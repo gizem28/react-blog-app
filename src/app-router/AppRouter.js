@@ -8,6 +8,7 @@ import Contact from "../pages/Contact"
 import MyNav from '../components/MyNavbar'
 import Footer from "../components/Footer"
 import BlogForm from '../components/BlogForm'
+import NewBlog from '../pages/NewBlog'
 
 const AppRouter = () => {
     return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
             <Route path="/contact" element={<Contact/>}/>
             <Route  path="/login" element={<Login/>}/>
             <Route  path="/register" element={<Register/>}/>
+            <Route  path="/newblog" element={<NewBlog/>}/>
         </Routes>
         <Footer/>
         </BrowserRouter>

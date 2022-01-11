@@ -32,7 +32,8 @@ const MyNav = () => {
         onClick={signOutFunc}>
           Sign Out
         </NavLink>
-        <NavLink style={{fontWeight: "bold", color: "#977251" }}>
+        <NavLink style={{fontWeight: "bold", color: "#977251" }}
+        eventKey="newblog">
           New Blog
           </NavLink>
           </Nav>):
