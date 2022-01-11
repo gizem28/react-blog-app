@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../assets/register.png";
 import {useState} from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth ,user} from "../helper/firebase";
+import { auth} from "../helper/firebase";
 import { useNavigate } from "react-router-dom";
 
 
@@ -30,8 +30,7 @@ const handleSubmit = async ()=>{
   const displayName = firstName+" "+lastName;
   try{
     await createUserWithEmailAndPassword(auth,email, password);
-    await updateProfile(user, {displayName:displayName});
-    console.log(user);
+    await updateProfile(auth.user, {displayName:displayName});
     navigate("/");
   }catch(err){
     alert(err.message);
