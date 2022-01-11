@@ -10,20 +10,42 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../assets/register.png";
+import {useState} from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth ,user} from "../helper/firebase";
+import { useNavigate } from "react-router-dom";
 
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+const navigate = useNavigate();
+const [firstName, setFirstName]=useState();
+const [lastName, setLastName]=useState();
+const [email, setEmail]=useState();
+const [password, setPassword]= useState();
+
+const handleSubmit = async ()=>{
+  const displayName = firstName+" "+lastName;
+  try{
+    await createUserWithEmailAndPassword(auth,email, password);
+    await updateProfile(user, {displayName:displayName});
+    console.log(user);
+    navigate("/");
+  }catch(err){
+    alert(err.message);
+  }
+};
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // eslint-disable-next-line no-console
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
 
   return (
       <div style={{backgroundImage:`url(${img})`,
@@ -55,6 +77,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -65,6 +88,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -75,6 +99,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -86,14 +111,16 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 ,bgcolor:"secondary.main"}}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>
