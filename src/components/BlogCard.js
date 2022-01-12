@@ -1,17 +1,21 @@
 import React from 'react'
+import {useFetch} from "../helper/fireBlog"
+import "../helper/firebase"
 
 const BlogCard = () => {
+  const {BlogList}=useFetch();
+
     return (
         <div>
-            {[].map((card, index) => {
+            {[].map((blog, index) => {
         return (
-          <div className="cards" key={index}>
+          <div className="blogs" key={index}>
             <div className="title">
-              <h2>{card.title}</h2>
+              <h2>{blog.title}</h2>
             </div>
-            <img src={card.image} alt={card.title} />
+            <img src={blog.image} alt={blog.title} />
             <div className="card-over">
-              <p>{card.desc}</p>
+              <p>{blog.content}</p>
             </div>
           </div>
         );
