@@ -1,7 +1,7 @@
 import {React, useContext, useState }from 'react'
 import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
-import {addData} from "../helper/firebase"
+import {addInfo} from "../helper/fireBlog"
 
 
 const NewBlog = () => {
@@ -18,6 +18,7 @@ const [info, setInfo]=useState(initialValues)
 
 const handleFormSubmit=()=>{
   console.log(info);
+  addInfo(info);
 }
 
   return (
