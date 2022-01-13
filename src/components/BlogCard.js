@@ -7,17 +7,21 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {useFetch} from "../helper/fireBlog"
 import "../helper/firebase"
+import Grid from '@mui/material/Grid';
 
 export default function BlogCard() {
   const {isLoading, blogList}=useFetch();
+
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Grid container margin={2} spacing={3}>
       {isLoading? 
           (<div><p>Loading..</p></div>):
           (blogList?.length ===0? 
         (<div className="blogs"><p>No blog found</p></div>):
         (blogList?.map((blog,index)=>(
-          <Card key={index}>
+          <Grid item xs={4} md={3}>
+          <Card sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
           component="img"
           alt={blog.title}
@@ -37,9 +41,10 @@ export default function BlogCard() {
           <Button size="small">Learn More</Button>
         </CardActions>
         </Card>
+        </Grid>
         ))
         )
           )}
-    </Card>
+    </Grid>
   );
 }
