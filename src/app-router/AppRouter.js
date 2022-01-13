@@ -7,14 +7,14 @@ import Register from "../pages/Register"
 import Contact from "../pages/Contact"
 import MyNav from '../components/MyNavbar'
 import Footer from "../components/Footer"
-import BlogForm from '../components/BlogForm'
+import SearchBar from '../components/SearchBar'
 import NewBlog from '../pages/NewBlog'
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
         <MyNav/>
-        <BlogForm/>
+        <SearchBar/>
         <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>

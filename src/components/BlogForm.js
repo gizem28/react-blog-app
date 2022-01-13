@@ -1,47 +1,81 @@
-import React from 'react';
-import { Button, FormControl, Nav, Navbar, Form} from 'react-bootstrap';
-import { useNavigate } from 'react-router';
+// import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import img from "../assets/newblog.png";
+import "../helper/firebase";
 
-const BlogForm = () => {
-// const handleSubmit=(e)=>{
-//         e.preventDefault()
-//         if(searchTerm && currentUser){
-//             getMovies(SEARCH_API + searchTerm)
-//         }else{
-//             alert('Please log in to search a movie.')
-//         }
-//         setSearchTerm("")
-//     }
 
-const navigate =useNavigate();
-    return(
-        <Navbar expand="lg" 
-        style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown",borderBottom:"1px solid brown"}}
-        onSelect={(eventKey)=>{
-        navigate(`/${eventKey}`)
-        }}>
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px'}}
-              navbarScroll
+const BlogForm = ({setInfo, info, handleFormSubmit}) => {
+
+  const handleInputChange =(e)=>{
+    const {name, value}=e.target
+    // addData(user, info);
+    setInfo({...info,[name]:value})
+    // setTitle("")
+    // setContent("")
+    // setImageUrl("")
+  }
+  
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundRepeat: " no-repeat",
+        backgroundSize: "100% 170%",
+        height: "74vh",
+        marginTop: 0,
+      }}>
+      <form>
+        <h1 className="pt-3">Add New Blog</h1>
+        <div className="mt-4">
+          <input
+            type="text"
+            placeholder="Title"
+            name="title"
+            className="px-4 py-3 relative bg-white border-0 shadow"
+            required
+            style={{ height: 50, width: 500 }}
+            value={info.title}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mt-4">
+          <input
+            type="alt"
+            placeholder="Image URL"
+            name="imageUrl"
+            className="px-4 py-3 relative border-0 shadow"
+            required
+            style={{ height: 50, width: 500 }}
+            value={info.imageUrl}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mt-4">
+          <textarea
+            placeholder="Content"
+            name="content"
+            className="px-4 py-3 relative border-0 shadow "
+            required
+            style={{ height: 150, width: 500 }}
+            value={info.content}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <Button
+            type="button"
+            variant="contained"
+            sx={{ mt: 3, mb: 2, px: 5, bgcolor: "secondary.main" }}
+            style={{ height: 50, width: 300 }}
+            onClick={handleFormSubmit} 
+            // onClick={handleClick}
             >
-              <Nav.Link className='link' eventKey="about" style={{marginLeft:20}}>About</Nav.Link>
-              <Nav.Link className='link' eventKey="register">Join Us</Nav.Link>
-              <Nav.Link className='link' eventKey="contact">
-                Contact Us
-              </Nav.Link>
-            </Nav>
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search a blog"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button style={{marginRight:20}} variant="outline-secondary">Search</Button>
-            </Form>
-      </Navbar>
-    )
-}
+            Submit
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-export default BlogForm
+export default BlogForm;
