@@ -1,19 +1,29 @@
-import React from 'react';
+import {useContext, useState} from 'react';
 import { Button, FormControl, Nav, Navbar, Form} from 'react-bootstrap';
 import { useNavigate } from 'react-router';
+// import AuthContext from "../contexts/AuthContext";
+
 
 const SearchBar = () => {
+  const navigate =useNavigate();
+  const [searchTerm, setSearchTerm]=useState("")
+  // const {currentUser}= useContext(AuthContext)
+
 // const handleSubmit=(e)=>{
 //         e.preventDefault()
 //         if(searchTerm && currentUser){
-//             getMovies(SEARCH_API + searchTerm)
+            
 //         }else{
 //             alert('Please log in to search a movie.')
 //         }
 //         setSearchTerm("")
 //     }
+  // const searchList =({filteredCards})=>{
+  //   const filtered=filteredCards.map(card=>
+  //     <Card key={blog.index} title={title}/> )
+  // }
 
-const navigate =useNavigate();
+
     return(
         <Navbar expand="lg" 
         style={{backgroundColor:"#FCF9F4", borderTop:"1px solid brown",borderBottom:"1px solid brown"}}
@@ -31,14 +41,19 @@ const navigate =useNavigate();
                 Contact Us
               </Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex" 
+            // onSubmit={handleSubmit}
+            >
               <FormControl
                 type="search"
                 placeholder="Search a blog"
                 className="me-2"
                 aria-label="Search"
+                // value={searchTerm}
+                // onChange={(e)=>setSearchTerm(e.target.value)}
               />
-              <Button style={{marginRight:20}} variant="outline-secondary">Search</Button>
+              <Button style={{marginRight:20}} variant="outline-secondary"
+              >Search</Button>
             </Form>
       </Navbar>
     )

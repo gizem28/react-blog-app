@@ -6,7 +6,8 @@ const About = () => {
     <Container className="text-center mt-4">
       <Row>
         <Col>
-          <img src={image} style={{height:570, width:960}} alt="About Us" />
+          <img src={image} style={{height:500, width:900
+          ,marginBottom:20}} alt="About Us" />
         </Col>
         <Col>
           <h1>Social Blogging is the future of Online Writing</h1>

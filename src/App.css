@@ -26,14 +26,13 @@ h1{
 }
 
 footer{
+  padding:20px ;
   background-color:#FCF9F4  ;
   height: 10vh;
   color: #977251;
   font-weight: 500;
-  position: fixed;
-  bottom: 0px;
 }
 
-footer div{
-  padding-top: 8px;
-}
+/* footer div{
+  padding-top: 4px;
+} */

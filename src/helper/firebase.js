@@ -3,8 +3,8 @@
 import { initializeApp} from "firebase/app";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { getDatabase} from "firebase/database"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// import {getDocs, collection} from "firebase/firestore"
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -28,3 +28,9 @@ onAuthStateChanged(auth, user=>{
  user? (console.log("logged in", user))
  :(console.log("no user")) ;
 })
+
+// export const readData = async (setData) => {
+//   const querySnapshot = await getDocs(collection(db, "blog"));
+//   console.log(querySnapshot.docs)
+//   setData(querySnapshot.docs);
+// };

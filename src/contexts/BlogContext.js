@@ -1,64 +1,29 @@
-import React, { useContext, useState, useEffect } from "react";
-// import { db } from "../helpers/firebase";
+import { createContext, useEffect, useState } from "react";
+// import { collection, query, orderBy, getDocs } from "firebase/firestore";
+// import { readData } from "../helpers/firebase";
+// import { onValue, ref } from "firebase/database";
 
 export const BlogContext = createContext();
 
-const BlogContextProvider = (props)=>{
-    const [info, setInfo]=useState()
-    useEffect((info)=>{
-            setInfo(info)
-    })
-}, [])
+const BlogContextProvider = (props) => {
+  const [blogsInfo, setBlogsInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
 
+  // const [data, setData] = useState([])
 
-// export function useBlog() {
-//     return useContext(BlogContext);
-//   }
-  
-//   export function BlogProvider({ children }) {
-//     const [currentBlogs, setCurrentBlogs] = useState();
-  
-//     function addBlog(blogValue) {
-//       const blogRef = firebaseDB.ref("blogs");
-//       blogRef.push(blogValue);
-//     }
-  
-//     function getOneBlog(id) {
-//       const result = currentBlogs?.filter((item) => item.id === id);
-//       return result;
-//     }
-  
-//     function deleteOneBlog(id) {
-//       const contactRef = firebaseDB.ref("blogs").child(id);
-//       contactRef.remove();
-//     }
-  
-//     function updateBlog(id, data) {
-//       const contactRef = firebaseDB.ref("blogs").child(id);
-//       contactRef.update(data);
-//     }
-  
-//     useEffect(() => {
-//       const blogRef = firebaseDB.ref("blogs");
-//       blogRef.on("value", (snapshot) => {
-//         //   console.log(snapshot.val());
-//         const blogs = snapshot.val();
-//         const blogL = [];
-//         for (let id in blogs) {
-//           blogL.push({ id, ...blogs[id] });
-//         }
-//         //   console.log(blogL);
-//         setCurrentBlogs(blogL);
-//       });
-//     }, []);
-  
-//     const value = {
-//       addBlog,
-//       currentBlogs,
-//       getOneBlog,
-//       deleteOneBlog,
-//       updateBlog,
-//     };
-  
-//     return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>}
+  // useEffect(() => {
+  //     readData(setData);
+  //   }, [])
+    
+  //   console.log(data)
+
+
+  return (
+    <BlogContext.Provider value={{ blogsInfo, isLoading }}>
+      {props.children}
+    </BlogContext.Provider>
+  );
+};
+
+export default BlogContextProvider;

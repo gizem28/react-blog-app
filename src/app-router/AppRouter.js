@@ -9,6 +9,7 @@ import MyNav from '../components/MyNavbar'
 import Footer from "../components/Footer"
 import SearchBar from '../components/SearchBar'
 import NewBlog from '../pages/NewBlog'
+import UpdateBlog from '../pages/UpdateBlog'
 
 const AppRouter = () => {
     return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
             <Route  path="/login" element={<Login/>}/>
             <Route  path="/register" element={<Register/>}/>
             <Route  path="/newblog" element={<NewBlog/>}/>
+            <Route  path="/updateblog" element={<UpdateBlog/>}/>
         </Routes>
         <Footer/>
         </BrowserRouter>

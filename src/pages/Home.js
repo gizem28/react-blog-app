@@ -8,7 +8,6 @@ function Home() {
   return (
     <div className="App">
     <Dashboard/>
-    <Footer/>
     </div>
   );
 }
