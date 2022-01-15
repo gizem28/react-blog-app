@@ -1,38 +1,35 @@
 import {React, useContext, useState }from 'react'
+import { useNavigate } from 'react-router'
 import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
-import {addInfo} from "../helper/fireBlog"
+import { useBlog } from '../contexts/BlogContext'
+import { CssBaseline, Container } from '@mui/material'
 
 
 const NewBlog = () => {
 const {user}=useContext(AuthContext)
-// const [title, setTitle]=useState("")
-// const [imageUrl, setImageUrl]=useState("")
-// const [content, setContent]=useState("")
-const initialValues= {
-title:"",
-imageUrl:"",
-content:""
-}
-const [info, setInfo]=useState(initialValues)
+const {addBlog}=useBlog();
+const navigate =useNavigate();
 
-const handleFormSubmit=()=>{
-  console.log(info);
-  addInfo(info);
+const handler=(newBlog)=>{
+  try{
+    addBlog(newBlog);
+    navigate("/");
+  }catch(error){
+    alert(error.message)
+  }
 }
 
-  return (
-      <BlogForm 
-      // handleClick={handleClick}
-      // setContent={setContent}
-      // setImageUrl={setImageUrl}
-      // setTitle={setTitle}
-      // title={title}
-      // imageUrl={imageUrl}
-      // content={content}
-      info={info} setInfo={setInfo} handleFormSubmit={handleFormSubmit}
-      />
-  )
+const blog= {
+  author:user.email,
+  likeCount:0,
+  blogDate:Date.now(),
+  title:"",
+  image:"",
+  content:""
+}
+
+  return (<BlogForm blog={blog} handler={handler} />)
 }
 
 export default NewBlog

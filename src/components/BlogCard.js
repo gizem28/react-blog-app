@@ -5,73 +5,76 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useFetch } from "../helper/fireBlog";
-import "../helper/firebase";
-import Grid from "@mui/material/Grid";
-import { FcShare, FcLike, FcRating } from "react-icons/fc";
-import { CircularProgress } from "@mui/material";
-import { useNavigate } from "react-router";
+import { FcShare, FcLike } from "react-icons/fc";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
+const BlogCard= ({ item })=> {
+  const {
+    id,
+    author,
+    content,
+    likeCount,
+    imageUrl,
+    title,
+    blogDate,
+    commentCount,
+  } = item;
 
-export default function BlogCard({blog}) {
-  const navigate= useNavigate();
-  const { isLoading, blogList } = useFetch();
- 
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-  // console.log(doc.id)
-  // const { _document } = doc
-  // console.log(_document.data.value.mapValue.fields)
-  //  const items = _document.data.value.mapValue.fields
-  //  console.log(items)
-  // const {author, comments, content, get_like_count, image, published_date, title} = items
-  // const slicedDate = published_date.timestampValue.slice(0,10)
+  const getDetails = () => {
+    if (!user) {
+      alert("Please log in");
+    } else {
+      navigate(`/detail/${id}`);
+    }
+  };
 
   return (
-    <Grid container marginTop={2} spacing={4} sx={{ marginBottom: 3 }}>
-      {isLoading ? (
-        <Grid item xs={12} style={{ textAlign: "center" }}>
-          <CircularProgress color="inherit" />
-        </Grid>
-      ) : blogList?.length === 0 ? (
-        <div className="blogs">
-          <p>No blog found</p>
-        </div>
-      ) : (
-        blogList?.map((blog, id) => (
-          <Grid key={id} item xs={3} md={4}>
-            <Card sx={{ maxWidth: 345, marginLeft: 8, cursor:"pointer" }}
-            onClick={()=> navigate(`/details/${id}`)}>
-              <CardMedia
-                component="img"
-                alt={blog.title}
-                height="180"
-                image={blog.imageUrl}
-              />
-              <CardContent sx={{ height:250 }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  {blog.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {blog.content.slice(0, 240) + "..."}
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ marginTop: 1 }}>
-                <Button size="small">
-                  Share
-                  <FcShare />
-                </Button>
-                <Button size="small">
-                  Like
-                  <FcLike />
-                </Button>
-                <Typography variant="body2" color="text.secondary">
-                  {/* {slicedDate} */}
-                </Typography>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))
-      )}
-    </Grid>
+    // <CircularProgress color="inherit" />
+    <Card
+      sx={{ maxWidth: 345, marginLeft: 8, cursor: "pointer" }}
+      onClick={getDetails}>
+
+      <CardMedia component="img" alt={title} height="180" image={imageUrl} />
+
+      <CardContent sx={{ height: 250 }}>
+        <Typography gutterBottom variant="h5" component="h2">
+          {title}
+        </Typography>
+
+        <Typography variant="body2" component="p" color="text.secondary">
+          {content.slice(0, 240) + "..."}
+        </Typography>
+      </CardContent>
+
+      <CardActions sx={{ marginTop: 1 }}>
+
+      <Typography gutterBottom variant="h6" component="h2">
+          {author}
+      </Typography>
+      
+      <Typography variant="body2" color="text.secondary">
+        {moment(blogDate).format("MMM DD, YYYY")}
+        </Typography>
+
+
+        <Typography variant="body2" color="text.secondary">
+        <FcShare />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        <FcLike />
+        {likeCount}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        {commentCount}
+        </Typography>
+      </CardActions>
+    </Card>
   );
 }
+
+export default BlogCard;

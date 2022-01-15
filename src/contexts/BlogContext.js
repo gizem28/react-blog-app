@@ -1,29 +1,81 @@
-import { createContext, useEffect, useState } from "react";
-// import { collection, query, orderBy, getDocs } from "firebase/firestore";
-// import { readData } from "../helpers/firebase";
-// import { onValue, ref } from "firebase/database";
-
-export const BlogContext = createContext();
-
-const BlogContextProvider = (props) => {
-  const [blogsInfo, setBlogsInfo] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+import { createContext, useEffect, useState, useContext} from "react";
+import {db} from "../helper/firebase";
+import { getDatabase,ref,push,set, onValue,query } from "firebase/database"
 
 
-  // const [data, setData] = useState([])
+//Context for gloabal data
+const BlogContext=createContext();
 
-  // useEffect(() => {
-  //     readData(setData);
-  //   }, [])
+//Function to use context
+export function useBlog(){
+  return useContext(BlogContext);
+}
+
+//Method for BlogContext.provider
+export function BlogContextProvider({children}){
+  const [currentBlogs, setCurrentBlogs]=useState();
+
+  //navigate to Details Page
+  function getDetails(id){
+    const result=currentBlogs?.filter((item)=>item.id===id);
+    return result;
+  }
+
+//delete data
+  function deleteBlog(id){
+    const cardRef=db.ref("blog").child(id);
+    cardRef.remove();
+  }
+
+  //update data
+  function updateBlog(id, data){
+    const cardRef=db.ref("blog").child(id);
+    cardRef.update(data);
+  }
+
+  //send data to Firebase
+  
     
-  //   console.log(data)
+    useEffect(()=>{
+      const db = getDatabase();
+      const userRef = ref(db, 'blog');
+  
+      onValue(query(userRef), snapshot => {
+        const blog=snapshot.val()
+        // send an array of the values in database
+        const blogArray = [];
+        for (let id in blog) {
+          blogArray.push({ id, ...blog[id] });
+        }
+        setCurrentBlogs(blogArray);
+      });
+    }, []);
 
 
-  return (
-    <BlogContext.Provider value={{ blogsInfo, isLoading }}>
-      {props.children}
-    </BlogContext.Provider>
-  );
-};
+// add document
+const addBlog=(info)=>{
+  const db=getDatabase();
+  const userRef=ref(db,"blog")
+  const newUserRef=push(userRef)
+  set(newUserRef,{
+    title:info.title,
+    imageUrl:info.imageUrl,
+    content:info.content
+  });
+  console.log("data added");
+}
 
-export default BlogContextProvider;
+
+const value={
+  currentBlogs,
+  getDetails,
+  updateBlog,
+  deleteBlog,
+  addBlog
+}
+
+  return <BlogContext.Provider value={value}>
+    {children}
+  </BlogContext.Provider>
+}
+

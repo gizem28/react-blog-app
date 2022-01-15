@@ -1,21 +1,17 @@
 // import React, { useState } from "react";
 import Button from "@mui/material/Button";
+import React, { useState, useEffect } from "react";
 import img from "../assets/newblog.png";
-import "../helper/fireBlog";
 import "../helper/firebase";
 
+const BlogForm = (props) => {
+  const { blog, handler } = props;
+  const [newBlog, setNewBlog] = useState(blog);
 
-const BlogForm = ({setInfo, info, handleFormSubmit}) => {
+  useEffect(() => {
+    setNewBlog(blog);
+  }, [blog]);
 
-  const handleInputChange =(e)=>{
-    const {name, value}=e.target
-    // addData(user, info);
-    setInfo({...info,[name]:value})
-    // setTitle("")
-    // setContent("")
-    // setImageUrl("")
-  }
-  
   return (
     <div
       style={{
@@ -24,7 +20,8 @@ const BlogForm = ({setInfo, info, handleFormSubmit}) => {
         backgroundSize: "100% 170%",
         height: "74vh",
         marginTop: 0,
-      }}>
+      }}
+    >
       <form>
         <h1 className="pt-3">Add New Blog</h1>
         <div className="mt-4">
@@ -35,8 +32,8 @@ const BlogForm = ({setInfo, info, handleFormSubmit}) => {
             className="px-4 py-3 relative bg-white border-0 shadow"
             required
             style={{ height: 50, width: 500 }}
-            value={info.title}
-            onChange={handleInputChange}
+            value={newBlog.title}
+            onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
           />
         </div>
         <div className="mt-4">
@@ -47,8 +44,8 @@ const BlogForm = ({setInfo, info, handleFormSubmit}) => {
             className="px-4 py-3 relative border-0 shadow"
             required
             style={{ height: 50, width: 500 }}
-            value={info.imageUrl}
-            onChange={handleInputChange}
+            value={newBlog.imageUrl}
+            onChange={(e) => setNewBlog({ ...newBlog, imageUrl: e.target.value })}
           />
         </div>
         <div className="mt-4">
@@ -58,8 +55,8 @@ const BlogForm = ({setInfo, info, handleFormSubmit}) => {
             className="px-4 py-3 relative border-0 shadow "
             required
             style={{ height: 150, width: 500 }}
-            value={info.content}
-            onChange={handleInputChange}
+            value={newBlog.content}
+            onChange={(e) => setNewBlog({ ...newBlog, content: e.target.value })}
           />
         </div>
         <div>
@@ -68,9 +65,8 @@ const BlogForm = ({setInfo, info, handleFormSubmit}) => {
             variant="contained"
             sx={{ mt: 3, mb: 2, px: 5, bgcolor: "secondary.main" }}
             style={{ height: 50, width: 300 }}
-            onClick={handleFormSubmit} 
-            // onClick={handleClick}
-            >
+            onClick={() => handler(newBlog)}
+          >
             Submit
           </Button>
         </div>
