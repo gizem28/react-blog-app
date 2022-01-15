@@ -1,7 +1,6 @@
 // import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import React, { useState, useEffect } from "react";
-import img from "../assets/newblog.png";
 import "../helper/firebase";
 
 const BlogForm = (props) => {

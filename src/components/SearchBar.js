@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+// import { useState} from 'react';
 import { Button, FormControl, Nav, Navbar, Form} from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 // import AuthContext from "../contexts/AuthContext";
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 
 const SearchBar = () => {
   const navigate =useNavigate();
-  const [searchTerm, setSearchTerm]=useState("")
+  // const [searchTerm, setSearchTerm]=useState("")
   // const {currentUser}= useContext(AuthContext)
 
 // const handleSubmit=(e)=>{

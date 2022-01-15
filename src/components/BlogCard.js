@@ -22,6 +22,7 @@ const BlogCard = ({ item }) => {
   } = item;
 
   const { user } = useAuth();
+  console.log(author);
 
   const navigate = useNavigate();
 

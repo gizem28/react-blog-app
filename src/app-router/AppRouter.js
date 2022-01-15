@@ -11,7 +11,6 @@ import SearchBar from "../components/SearchBar";
 import NewBlog from "../pages/NewBlog";
 import UpdateBlog from "../pages/UpdateBlog";
 import Details from "../pages/Details";
-import PrivateRouter from "../app-router/PrivateRouter";
 
 const AppRouter = () => {
   return (

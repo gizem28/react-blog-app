@@ -2,13 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useBlog } from "../contexts/BlogContext";
 import BlogForm from "../components/BlogForm";
-import { Container, Typography } from "@mui/material";
-import { Button } from "@mui/material";
-import { useAuth } from "../contexts/AuthContext";
 import img from "../assets/newblog.png"
 
 const UpdateBlog = ({ item }) => {
-  const { user } = useAuth();
   const navigate = useNavigate();
   const { updateBlog, currentBlogs } = useBlog();
   const { id } = useParams();
