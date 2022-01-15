@@ -1,8 +1,9 @@
-import {React, useContext, useState }from 'react'
+import {React, useContext}from 'react'
 import { useNavigate } from 'react-router'
 import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
 import { useBlog } from '../contexts/BlogContext'
+import img from "../assets/newblog.png"
 
 
 const NewBlog = () => {
@@ -29,10 +30,16 @@ const blog= {
 }
 
   return (
-    <>
-    <h1>Add New Blog</h1>
+    <div style={{
+      backgroundImage: `url(${img})`,
+      backgroundRepeat: " no-repeat",
+      backgroundSize: "100% 170%",
+      height: "74vh",
+      marginTop: 0,
+    }}>
+    <h1 style={{padding:30}}>Add New Blog</h1>
       <BlogForm blog={blog} handler={handler} />
-    </>
+    </div>
   )
 }
 

@@ -4,12 +4,12 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { BsShare, BsSuitHeart, BsChatRightText} from "react-icons/bs";
+import { BsShare, BsSuitHeart, BsChatRightText } from "react-icons/bs";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 
-const BlogCard= ({ item })=> {
+const BlogCard = ({ item }) => {
   const {
     id,
     content,
@@ -18,20 +18,19 @@ const BlogCard= ({ item })=> {
     title,
     blogDate,
     commentCount,
-    author
+    author,
   } = item;
 
   const { user } = useAuth();
 
   const navigate = useNavigate();
 
-  
   const getDetails = () => {
     if (!user) {
       alert("Please log in");
     } else {
       navigate(`/detail/${id}`);
-      console.log(user)
+      console.log(user);
     }
   };
 
@@ -39,8 +38,8 @@ const BlogCard= ({ item })=> {
     // <CircularProgress color="inherit" />
     <Card
       sx={{ maxWidth: 345, marginLeft: 8, cursor: "pointer" }}
-      onClick={getDetails}>
-
+      onClick={getDetails}
+    >
       <CardMedia component="img" alt={title} height="180" image={imageUrl} />
 
       <CardContent sx={{ height: 250 }}>
@@ -51,39 +50,50 @@ const BlogCard= ({ item })=> {
         <Typography variant="body2" component="p" color="text.secondary">
           {content.slice(0, 240) + "..."}
         </Typography>
-        <Typography variant="body2" >
-      <Link to={`/details/${item.id}`}> View more</Link>
-      </Typography>
+        <Typography variant="body2">
+          <Link to={`/details/${item.id}`}> View more</Link>
+        </Typography>
       </CardContent>
 
       <CardActions>
-      <Typography gutterBottom variant="body2" component="p"  color="text.secondary">
-          Author: {user.email}
-      </Typography>
-    
-        
-        </CardActions>
-        <CardActions>
-       
-        <Typography style={{marginLeft:10}} variant="body2" color="text.secondary">
+        <Typography
+          gutterBottom
+          variant="body2"
+          component="p"
+          color="text.secondary">Author: {user?.email}
+        </Typography>
+      </CardActions>
+
+      <CardActions>
+        <Typography
+          style={{ marginLeft: 10 }}
+          variant="body2"
+          color="text.secondary"
+        > {likeCount}
         <BsSuitHeart />
-        {likeCount}
+          
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <BsChatRightText style={{marginLeft:10}} />
-        {commentCount}
+        <BsChatRightText style={{ marginLeft: 10 }} />
+          {commentCount}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        <BsShare style={{marginLeft:10}} />
+          
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <BsShare style={{ marginLeft: 10 }} />
         </Typography>
 
-        <Typography variant="body2" color="text.secondary"
-         style={{position:"relative", left:140}}>
-        {moment(blogDate).format("MMM DD, YYYY")}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          style={{ position: "relative", left: 140 }}
+        >
+          {moment(blogDate).format("MMM DD, YYYY")}
         </Typography>
-        </CardActions>
+      </CardActions>
     </Card>
   );
-}
+};
 
 export default BlogCard;

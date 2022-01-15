@@ -13,15 +13,7 @@ const BlogForm = (props) => {
   }, [blog]);
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${img})`,
-        backgroundRepeat: " no-repeat",
-        backgroundSize: "100% 170%",
-        height: "74vh",
-        marginTop: 0,
-      }}
-    >
+    <div>
       <form>
         <div className="mt-4">
           <input

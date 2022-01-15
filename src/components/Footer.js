@@ -13,13 +13,14 @@ function Footer() {
       style={{
         width: "100%",
         borderTop: "1px solid brown",
+        marginBottom:0,
       }}>
       <div>Designed by Gizem </div>
       <div className="icons" >
         <FaFacebookSquare style={{ marginRight: 10 }} />
         <FaTwitterSquare style={{ marginRight: 10 }} />
         <FaInstagramSquare />
-        <Typography variant="body2" align="center" style={{paddingBottom:20}}>
+        <Typography variant="body2" align="center">
           {" "}
           {"Copyright © "}{" "}
           <Link color="inherit" href="/">

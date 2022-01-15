@@ -5,6 +5,7 @@ import BlogForm from "../components/BlogForm";
 import { Container, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { useAuth } from "../contexts/AuthContext";
+import img from "../assets/newblog.png"
 
 const UpdateBlog = ({ item }) => {
   const { user } = useAuth();
@@ -34,12 +35,18 @@ useEffect(() => {
   }
 
   return (
-    <>
-        <Typography component="h1" variant="h5">
+    <div style={{
+      backgroundImage: `url(${img})`,
+      backgroundRepeat: " no-repeat",
+      backgroundSize: "100% 170%",
+      height: "74vh",
+      marginTop: 0,
+    }}>
+        <h1 style={{padding:30}}>
           Update Blog
-        </Typography>
+        </h1>
         <BlogForm blog={updatedBlog} handler={handler} />
-    </>
+    </div>
   );
 };
 

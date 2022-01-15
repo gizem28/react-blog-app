@@ -2,7 +2,6 @@ import { createContext, useEffect, useState, useContext} from "react";
 import {db} from "../helper/firebase";
 import { getDatabase,ref,push,set, onValue,query, remove
 ,update, child} from "firebase/database"
-import { useNavigate } from "react-router";
 
 
 //Context for gloabal data
