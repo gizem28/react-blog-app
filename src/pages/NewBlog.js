@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router'
 import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
 import { useBlog } from '../contexts/BlogContext'
-import { CssBaseline, Container } from '@mui/material'
 
 
 const NewBlog = () => {
