@@ -28,7 +28,12 @@ const blog= {
   content:""
 }
 
-  return (<BlogForm blog={blog} handler={handler} />)
+  return (
+    <>
+    <h1>Add New Blog</h1>
+      <BlogForm blog={blog} handler={handler} />
+    </>
+  )
 }
 
 export default NewBlog

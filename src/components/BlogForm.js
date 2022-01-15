@@ -23,7 +23,6 @@ const BlogForm = (props) => {
       }}
     >
       <form>
-        <h1 className="pt-3">Add New Blog</h1>
         <div className="mt-4">
           <input
             type="text"
