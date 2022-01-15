@@ -3,9 +3,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { FcShare, FcLike } from "react-icons/fc";
+import { BsShare, BsSuitHeart, BsChatRightText} from "react-icons/bs";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -13,7 +12,6 @@ import moment from "moment";
 const BlogCard= ({ item })=> {
   const {
     id,
-    author,
     content,
     likeCount,
     imageUrl,
@@ -25,6 +23,7 @@ const BlogCard= ({ item })=> {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  
   const getDetails = () => {
     if (!user) {
       alert("Please log in");
@@ -51,28 +50,30 @@ const BlogCard= ({ item })=> {
         </Typography>
       </CardContent>
 
-      <CardActions sx={{ marginTop: 1 }}>
-
-      <Typography gutterBottom variant="h6" component="h2">
-          {author}
+      <CardActions>
+      <Typography gutterBottom variant="body1" component="p"  color="text.secondary">
+          Author: {user.email}
       </Typography>
-      
-      <Typography variant="body2" color="text.secondary">
-        {moment(blogDate).format("MMM DD, YYYY")}
-        </Typography>
-
-
-        <Typography variant="body2" color="text.secondary">
-        <FcShare />
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-        <FcLike />
+        </CardActions>
+        <CardActions>
+       
+        <Typography style={{marginLeft:10}} variant="body2" color="text.secondary">
+        <BsSuitHeart />
         {likeCount}
         </Typography>
         <Typography variant="body2" color="text.secondary">
+          <BsChatRightText style={{marginLeft:10}} />
         {commentCount}
         </Typography>
-      </CardActions>
+        <Typography variant="body2" color="text.secondary">
+        <BsShare style={{marginLeft:10}} />
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary"
+         style={{position:"relative", left:140}}>
+        {moment(blogDate).format("MMM DD, YYYY")}
+        </Typography>
+        </CardActions>
     </Card>
   );
 }

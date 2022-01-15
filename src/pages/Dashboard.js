@@ -10,10 +10,11 @@ const Dashboard = () => {
     return (
         <>
           <h1 style={{margin:"30px"}}>Popular Blogs</h1>
-     <Grid container marginTop={2} spacing={4} sx={{ marginBottom: 3 }}>
+          <br/>
+     <Grid container spacing={5} sx={{ marginBottom: 3 }}>
               {currentBlogs === undefined ? (
-            <Grid item marginTop={4}>
-               <CircularProgress color="inherit"/>
+              <Grid item xs={12} style={{ textAlign: "center", minHeight:"300px"}}>
+               <CircularProgress style={{color:"#977278"}} />
                </Grid>
               ) : currentBlogs ? (
                 currentBlogs.map((item, id) => (
