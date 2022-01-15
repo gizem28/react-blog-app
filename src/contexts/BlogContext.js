@@ -1,9 +1,12 @@
 import { createContext, useEffect, useState, useContext} from "react";
 import {db} from "../helper/firebase";
-import { getDatabase,ref,push,set, onValue,query, remove} from "firebase/database"
+import { getDatabase,ref,push,set, onValue,query, remove
+,update, child} from "firebase/database"
+import { useNavigate } from "react-router";
 
 
 //Context for gloabal data
+
 const BlogContext=createContext();
 
 //Function to use context
@@ -28,14 +31,15 @@ export function BlogContextProvider({children}){
   }
 
   //update data
-  function updateBlog(id, data){
-    const cardRef=db.ref("blog").child(id);
-    cardRef.update(data);
+  function updateBlog(id, info){
+    db = getDatabase();
+    const newUserKey=push(child(ref(db),"blog/")).key;
+    const updates={};
+    updates["blog/"+newUserKey]=info;
+    return update(ref(db),updates);
   }
 
   //send data to Firebase
-  
-    
     useEffect(()=>{
       const db = getDatabase();
       const userRef = ref(db, 'blog');

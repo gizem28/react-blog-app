@@ -9,7 +9,7 @@ import { useAuth } from "../contexts/AuthContext";
 const UpdateBlog = ({ item }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { updateBlog, currentBlogs, getDetails } = useBlog();
+  const { updateBlog, currentBlogs } = useBlog();
   const { id } = useParams();
   const result = currentBlogs?.filter((card) => card.id === id);
   
@@ -20,21 +20,14 @@ const UpdateBlog = ({ item }) => {
 
   const [updatedBlog, setUpdatedBlog] = useState(res);
 
-//   const handleInputChange=(e)=>{
-//     // const name=e.target.name
-//     // const value=e.target.value
-//     const {name,value}=e.target
-//     setUpdatedBlog({...updatedBlog,[name]:value})
-//   }
-
-
 useEffect(() => {
     setUpdatedBlog(res);
   }, [res]);
 
   const handler=(blogToUpdate)=>{
       try{
-          updateBlog(res?.id, blogToUpdate)
+           updateBlog(res?.id, blogToUpdate)
+          navigate("/")
       }catch(err){
           alert(err.message)
       }
