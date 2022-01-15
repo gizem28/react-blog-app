@@ -1,54 +1,80 @@
 import { useNavigate } from "react-router";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { Col, Row, Container } from "react-bootstrap";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import "../helper/firebase";
-import { FcShare, FcLike, FcRating } from "react-icons/fc";
-// import { CircularProgress } from "@mui/material";
+import { useAuth } from "../contexts/AuthContext";
+import { useParams } from "react-router-dom";
+import { useBlog } from "../contexts/BlogContext";
+import moment from "moment";
 
+export default function Details() {
+ 
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const {currentBlogs, deleteBlog}=useBlog()
+  const {id}=useParams();
+ 
 
-export default function BlogCard({blog}) {
-  const navigate =useNavigate()
+  const deleteHandler = (id) => {
+    deleteBlog(id);
+    console.log(id);
+    navigate("/");
+  };
 
-  // console.log(doc.id)
-  // const { _document } = doc
-  // console.log(_document.data.value.mapValue.fields)
-  //  const items = _document.data.value.mapValue.fields
-  //  console.log(items)
-  // const {author, comments, content, get_like_count, image, published_date, title} = items
-  // const slicedDate = published_date.timestampValue.slice(0,10)
+  const updateHandler = (id) => {
+    navigate(`/updateblog/${id}`);
+    console.log(id)
+  };
 
   return (
-            <Card sx={{ maxWidth: 345, marginLeft: 8 }}>
-              <CardMedia
-                component="img"
-                alt={blog.title}
-                height="180"
-                image={blog.imageUrl}
-              />
-              <CardContent sx={{ height:250 }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  {blog.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {blog.content.slice(0, 240) + "..."}
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ marginTop: 1 }}>
-                <Button size="small">
-                  Share
-                  <FcShare />
+    <Container className="pt-5" style={{minHeight:"80vh"}}>
+      {currentBlogs?.filter((item)=>item.id===id).map((item, index) => (
+         <Container key={index} className="text-center mt-4">
+         <Row>
+           <Col>
+             <img src={item.imageUrl} style={{height:450, width:600
+             ,marginBottom:20}} alt={item.title} />
+           </Col>
+           <Col>
+             <h1>{item.title}</h1>
+             <div className="pt-4">
+             {item.content}
+             </div>
+             <div className="pt-4">
+             {moment(item.blogDate).format("MMM DD, YYYY")}
+             </div>
+             <div className="pt-4">
+             Author: {user.email}
+             </div>
+           </Col>
+         </Row>
+         <Row>
+         {
+            item.author ?? (
+              <div >
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => updateHandler(item.id)}
+                  
+                >
+                  Update
                 </Button>
-                <Button size="small">
-                  Like
-                  <FcLike />
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className="m-4"
+                  onClick={() => deleteHandler(item.id)}
+                >
+                  Delete
                 </Button>
-                <Typography variant="body2" color="text.secondary">
-                  {/* {slicedDate} */}
-                </Typography>
-              </CardActions>
-            </Card>
-  )}
+                </div>
+            )
+          }
+          
+         </Row>
+       </Container>
+        ))}
+    </Container>
+  );
+}

@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { BsShare, BsSuitHeart, BsChatRightText} from "react-icons/bs";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 
 const BlogCard= ({ item })=> {
@@ -18,9 +18,11 @@ const BlogCard= ({ item })=> {
     title,
     blogDate,
     commentCount,
+    author
   } = item;
 
   const { user } = useAuth();
+
   const navigate = useNavigate();
 
   
@@ -29,6 +31,7 @@ const BlogCard= ({ item })=> {
       alert("Please log in");
     } else {
       navigate(`/detail/${id}`);
+      console.log(user)
     }
   };
 
@@ -48,12 +51,17 @@ const BlogCard= ({ item })=> {
         <Typography variant="body2" component="p" color="text.secondary">
           {content.slice(0, 240) + "..."}
         </Typography>
+        <Typography variant="body2" >
+      <Link to={`/details/${item.id}`}> View more</Link>
+      </Typography>
       </CardContent>
 
       <CardActions>
-      <Typography gutterBottom variant="body1" component="p"  color="text.secondary">
+      <Typography gutterBottom variant="body2" component="p"  color="text.secondary">
           Author: {user.email}
       </Typography>
+    
+        
         </CardActions>
         <CardActions>
        

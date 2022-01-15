@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, useContext} from "react";
 import {db} from "../helper/firebase";
-import { getDatabase,ref,push,set, onValue,query } from "firebase/database"
+import { getDatabase,ref,push,set, onValue,query, remove} from "firebase/database"
 
 
 //Context for gloabal data
@@ -17,14 +17,14 @@ export function BlogContextProvider({children}){
 
   //navigate to Details Page
   function getDetails(id){
-    const result=currentBlogs?.filter((item)=>item.id===id);
-    return result;
+    const db = getDatabase();
+    remove(ref(db, "blog/"+id));
   }
 
 //delete data
   function deleteBlog(id){
-    const cardRef=db.ref("blog").child(id);
-    cardRef.remove();
+    const db = getDatabase();
+    remove(ref(db, "blog/"+id));
   }
 
   //update data
