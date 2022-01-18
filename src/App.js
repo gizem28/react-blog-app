@@ -1,4 +1,5 @@
 import AppRouter from './app-router/AppRouter';
+import PrivateRouter from './app-router/PrivateRouter';
 import AuthContextProvider from './contexts/AuthContext';
 import { BlogContextProvider } from './contexts/BlogContext';
 
@@ -8,7 +9,10 @@ function App() {
     <div className="App">
      <AuthContextProvider>
        <BlogContextProvider>
-         <AppRouter/>
+         <AppRouter>
+            <PrivateRouter/>
+         </AppRouter>
+        
        </BlogContextProvider>
     </AuthContextProvider>
     </div>
