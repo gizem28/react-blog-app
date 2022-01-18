@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../helper/firebase";
+import {toastSuccessNotify} from "toastify";
 
 const theme = createTheme();
 
@@ -25,9 +26,11 @@ export default function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  //get, post, put islemlerinde sync kullanilmali
   const handleSubmit = async () => {
     try {
       let user = await signInWithEmailAndPassword(auth, email, password);
+      toastSuccessNotify("Successfully performed!")
       console.log(user);
       navigate("/");
     } catch (err) {
