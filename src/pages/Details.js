@@ -47,12 +47,12 @@ export default function Details() {
              </div>
              <div className="pt-4 mb-4">
              <FaRegUserCircle/> : {item.author}
+             {console.log("author", item.author)}
              </div>
            </Col>
          </Row>
          <Row>
-         {
-            item.author===user?.email && (
+         {item.author===user?.email && (
               <div >
                 <Button
                   variant="contained"

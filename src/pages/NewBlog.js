@@ -4,7 +4,7 @@ import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
 import { useBlog } from '../contexts/BlogContext'
 import img from "../assets/newblog.png"
-import { successNote } from '../helper/toastNotify'
+import { successNote, toastErrorNotify } from '../helper/toastNotify'
 
 
 const NewBlog = () => {
@@ -30,7 +30,7 @@ const handler=(newBlog)=>{
     console.log("author", blog.author);
     
   }catch(error){
-    alert(error.message)
+    toastErrorNotify("Blog can not be added")
   }
 }
 

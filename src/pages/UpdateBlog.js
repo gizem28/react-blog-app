@@ -12,7 +12,7 @@ const UpdateBlog = ({ item }) => {
   
 
   const res = useMemo(() => {
-    return result ? result[0] : { title: "", content: "", image: "" };
+    return result ? result[0] : { title: "", content: "", image: ""};
   }, [result]);
 
   const [updatedBlog, setUpdatedBlog] = useState(res);

@@ -63,7 +63,9 @@ const addBlog=(info)=>{
   set(newUserRef,{
     title:info.title,
     imageUrl:info.imageUrl,
-    content:info.content
+    content:info.content,
+    author:info.author,
+    blogDate:Date.now()
   });
   console.log("data added");
 }
