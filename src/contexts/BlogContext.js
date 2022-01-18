@@ -19,8 +19,8 @@ export function BlogContextProvider({children}){
 
   //navigate to Details Page
   function getDetails(id){
-    const db = getDatabase();
-    remove(ref(db, "blog/"+id));
+    const result = currentBlogs?.filter((item)=>item.id===id);
+    return result;
   }
 
 //delete data

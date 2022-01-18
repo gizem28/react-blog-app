@@ -14,6 +14,7 @@ import {useState} from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth} from "../helper/firebase";
 import { useNavigate } from "react-router-dom";
+import { successNote } from '../helper/toastNotify';
 
 
 const theme = createTheme();
@@ -32,6 +33,7 @@ const handleSubmit = async ()=>{
     await createUserWithEmailAndPassword(auth,email, password);
     await updateProfile(auth.user, {displayName:displayName});
     navigate("/");
+    successNote("Register Successfully performed!")
   }catch(err){
     alert(err.message);
   }

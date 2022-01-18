@@ -17,7 +17,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../helper/firebase";
-import {toastSuccessNotify} from "toastify";
+import {successNote} from "../helper/toastNotify";
 
 const theme = createTheme();
 
@@ -30,8 +30,8 @@ export default function SignIn() {
   const handleSubmit = async () => {
     try {
       let user = await signInWithEmailAndPassword(auth, email, password);
-      toastSuccessNotify("Successfully performed!")
       console.log(user);
+      successNote("Login Successfully performed!")
       navigate("/");
     } catch (err) {
       alert(err.message);
