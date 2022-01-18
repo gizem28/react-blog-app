@@ -63,7 +63,7 @@ const BlogCard = ({item}) => {
           variant="body2"
           component="p"
           color="text.secondary">
-            <FaRegUserCircle/> : {author}
+            <FaRegUserCircle style={{ marginLeft: 10 }}/> {author}
         </Typography>
       </CardActions>
 
