@@ -8,8 +8,9 @@ import { BsShare, BsSuitHeart, BsChatRightText } from "react-icons/bs";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
+import { toastErrorNotify } from "../helper/toastNotify";
 
-const BlogCard = ({ item }) => {
+const BlogCard = ({item}) => {
   const {
     id,
     content,
@@ -28,10 +29,10 @@ const BlogCard = ({ item }) => {
 
   const getDetails = () => {
     if (!user) {
-      alert("Please log in");
+      toastErrorNotify("Please login to get details");
+      navigate("/login");
     } else {
       navigate(`/detail/${id}`);
-      console.log(user);
     }
   };
 

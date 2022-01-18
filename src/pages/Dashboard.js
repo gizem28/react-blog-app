@@ -22,7 +22,7 @@ const Dashboard = () => {
           </Grid>
         ) : currentBlogs ? (
           currentBlogs.map((item, id) => (
-            <Grid key={id} item xs={3} md={4} marginBottom={2}>
+            <Grid key={id} item xs={12} md={4} marginBottom={2}>
               <BlogCard item={item} />
             </Grid>
           ))

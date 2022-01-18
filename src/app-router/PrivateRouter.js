@@ -7,12 +7,14 @@ import { Navigate, Routes, Route } from "react-router-dom";
 
 const PrivateRouter = (props) => {
   const { user } = useAuth();
+  // const navigate = useNavigate()
 
-  return user?.email ? (
+  return user? (
     <Routes>
       <Route path={props.path} element={props.element} />
     </Routes>
   ) : (
+    
     <Routes>
       <Route path="/login" render={() => <Navigate replace to="/login" />} />
       {/* <Route path="/login" element={<Login/>}/> */}
