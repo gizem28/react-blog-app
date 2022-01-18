@@ -2,6 +2,7 @@ import React from 'react';
 import { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../helper/firebase';
+import { useNavigate } from 'react-router';
 
 //context context for autentication data
 export const AuthContext =createContext()
@@ -10,9 +11,12 @@ export const AuthContext =createContext()
 export function useAuth(){
     return useContext(AuthContext);
 }
+
 const AuthContextProvider = ({children}) => {
     const [user, setUser]= useState();
     const [isLoading, setIsLoading]=useState(true);
+  
+    
 
     useEffect(() => {
         const unsubscribe= onAuthStateChanged(auth, user=>{
@@ -21,7 +25,7 @@ const AuthContextProvider = ({children}) => {
         });
         return unsubscribe;
      }, [])
-
+     
      function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
       }

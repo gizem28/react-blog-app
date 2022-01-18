@@ -6,6 +6,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useBlog } from "../contexts/BlogContext";
 import moment from "moment";
+import { successNote } from "../helper/toastNotify";
+import {FaRegUserCircle} from "react-icons/fa"
 
 export default function Details() {
  
@@ -17,7 +19,7 @@ export default function Details() {
 
   const deleteHandler = (id) => {
     deleteBlog(id);
-    console.log(id);
+    successNote("Deleted successfully!");
     navigate("/");
   };
 
@@ -43,20 +45,19 @@ export default function Details() {
              <div className="pt-4">
              {moment(item.blogDate).format("MMM DD, YYYY")}
              </div>
-             <div className="pt-4">
-             Author: {user.email}
+             <div className="pt-4 mb-4">
+             <FaRegUserCircle/> : {item.author}
              </div>
            </Col>
          </Row>
          <Row>
          {
-            item.author ?? (
+            item.author===user?.email && (
               <div >
                 <Button
                   variant="contained"
                   color="secondary"
                   onClick={() => updateHandler(item.id)}
-                  
                 >
                   Update
                 </Button>

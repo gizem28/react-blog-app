@@ -9,6 +9,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import moment from "moment";
 import { toastErrorNotify } from "../helper/toastNotify";
+import {FaRegUserCircle} from "react-icons/fa"
 
 const BlogCard = ({item}) => {
   const {
@@ -23,7 +24,6 @@ const BlogCard = ({item}) => {
   } = item;
 
   const { user } = useAuth();
-  console.log(author);
 
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const BlogCard = ({item}) => {
           {content.slice(0, 240) + "..."}
         </Typography>
         <Typography variant="body2">
-          <Link to={`/details/${item.id}`}> View more</Link>
+          <Link to={`/details/${id}`}> View more</Link>
         </Typography>
       </CardContent>
 
@@ -62,7 +62,8 @@ const BlogCard = ({item}) => {
           gutterBottom
           variant="body2"
           component="p"
-          color="text.secondary">Author: {user?.email}
+          color="text.secondary">
+            <FaRegUserCircle/> : {author}
         </Typography>
       </CardActions>
 

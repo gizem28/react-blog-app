@@ -4,6 +4,7 @@ import BlogForm from '../components/BlogForm'
 import {AuthContext} from "../contexts/AuthContext"
 import { useBlog } from '../contexts/BlogContext'
 import img from "../assets/newblog.png"
+import { successNote } from '../helper/toastNotify'
 
 
 const NewBlog = () => {
@@ -11,14 +12,6 @@ const {user}=useContext(AuthContext)
 const {addBlog}=useBlog();
 const navigate =useNavigate();
 
-const handler=(newBlog)=>{
-  try{
-    addBlog(newBlog);
-    navigate("/");
-  }catch(error){
-    alert(error.message)
-  }
-}
 
 const blog= {
   author:user.email,
@@ -28,6 +21,19 @@ const blog= {
   image:"",
   content:""
 }
+
+const handler=(newBlog)=>{
+  try{
+    addBlog(newBlog);
+    successNote("Blog added");
+    navigate("/");
+    console.log("author", blog.author);
+    
+  }catch(error){
+    alert(error.message)
+  }
+}
+
 
   return (
     <div style={{
