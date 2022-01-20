@@ -29,25 +29,50 @@ export function BlogContextProvider({children}){
     remove(ref(db, "blog/"+id));
   }
 
-  //update data
-  function updateBlog(id, data) {
+  // add document
+const addBlog=(info)=>{
+  const db=getDatabase();
+  const userRef=ref(db,"blog")
+  const newUserRef=push(userRef)
+  set(newUserRef,{
+    title:info.title,
+    imageUrl:info.imageUrl,
+    content:info.content,
+    author:info.author,
+    blogDate:Date.now()
+  });
+  console.log("data added");
+}
+
+  // update data, delete yapmadan calisiyor
+  function updateBlog(id, info) {
     const db = getDatabase();
-    const contactRef = db.ref("blog/").child(id);
-    // const contactRef=(ref(db, "blog/"+id))
-    update(getDatabase().ref("blog/").child(id));
+    const newUserKey=push(child(ref(db),"blog/")).key;
+    const updates={};
+    updates["blog/"+newUserKey]=info;
+    // updates['/user-blog/' + id + '/' + newUserKey] = info;
+    remove(ref(db, "blog/"+id));
+    return update(ref(db),updates);
   }
+
   // function updateBlog(id, title, content, imageUrl){
-  //   db = getDatabase();
+  //   const db = getDatabase();
   //   const postData={
+  //     id:id,
   //     title:title,
   //     content:content,
   //     imageUrl:imageUrl
+  //   };
+  //   // Get a key for a new Post.
+  // const newPostKey = push(child(ref(db), 'blog/')).key;
+  // // Write the new post's data simultaneously in the posts list and the user's post list.
+  // const updates = {};
+  // updates['blog/' + newPostKey] = postData;
+  // updates['/user-blog/' + id + '/' + newPostKey] = postData;
+  // return update(ref(db), updates);
   // }
-  //   const newUserKey=push(child(ref(db),"blog")).key;
-  //   const updates={};
-  //   updates["/blog/"+newUserKey]=postData;
-  //   return update(ref(db),updates);
-  // }
+
+
 
   //send data to Firebase
     useEffect(()=>{
@@ -65,21 +90,6 @@ export function BlogContextProvider({children}){
       });
     }, []);
 
-
-// add document
-const addBlog=(info)=>{
-  const db=getDatabase();
-  const userRef=ref(db,"blog")
-  const newUserRef=push(userRef)
-  set(newUserRef,{
-    title:info.title,
-    imageUrl:info.imageUrl,
-    content:info.content,
-    author:info.author,
-    blogDate:Date.now()
-  });
-  console.log("data added");
-}
 
 
 const value={
