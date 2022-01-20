@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import img from "../assets/contact.png";
+import SearchBar from "../components/SearchBar";
 
 const FORM_ENDPOINT = ""; // TODO - fill on the later step
 
@@ -22,6 +23,8 @@ const ContactForm = () => {
   }
 
   return (
+    <>
+    <SearchBar/>
       < div style={{backgroundImage:`url(${img})`,
       backgroundRepeat:" no-repeat",
       backgroundSize: "100% 100%",
@@ -68,6 +71,7 @@ const ContactForm = () => {
       </div>
     </form>
     </div>
+    </>
   );
 };
 

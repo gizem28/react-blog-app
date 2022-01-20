@@ -12,6 +12,7 @@ import PrivateRouter from "./PrivateRouter";
 import Details from "../pages/Details";
 import NewBlog from "../pages/NewBlog";
 import UpdateBlog from "../pages/UpdateBlog";
+import SearchBar from "../components/SearchBar";
 
 const AppRouter = () => {
   return (

@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../helper/firebase";
 import {successNote} from "../helper/toastNotify";
+import SearchBar from "../components/SearchBar";
 
 const theme = createTheme();
 
@@ -39,6 +40,8 @@ export default function SignIn() {
   };
 
   return (
+    <>
+    <SearchBar/>
     <div
       style={{
         backgroundImage: `url(${img})`,
@@ -121,5 +124,6 @@ export default function SignIn() {
         </Container>
       </ThemeProvider>
     </div>
+    </>
   );
 }

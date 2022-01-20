@@ -1,12 +1,16 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import BlogCard from './BlogCard';
+import React from "react";
+import BlogCard from "./BlogCard";
+import { Grid } from "@mui/material";
 
-const SearchList = ({filteredList}) => {
-    const filtered= filteredList.map(item => <BlogCard key={item.id} item={item}/>)
-  return <div>
-     {filtered}
-  </div>;
+const SearchList = ({ filteredList }) => {
+  const filtered = filteredList.map((item) => (
+    <BlogCard key={item.id} item={item} />
+  ));
+  return (
+    <Grid container style={{justifyItems:"center", marginTop: 20 }}>
+      {filtered}
+    </Grid>
+  );
 };
 
 export default SearchList;

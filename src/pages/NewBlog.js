@@ -5,6 +5,7 @@ import {AuthContext} from "../contexts/AuthContext"
 import { useBlog } from '../contexts/BlogContext'
 import img from "../assets/newblog.png"
 import { successNote, toastErrorNotify } from '../helper/toastNotify'
+import SearchBar from '../components/SearchBar'
 
 
 const NewBlog = () => {
@@ -36,6 +37,8 @@ const handler=(newBlog)=>{
 
 
   return (
+    <>
+    <SearchBar/>
     <div style={{
       backgroundImage: `url(${img})`,
       backgroundRepeat: " no-repeat",
@@ -46,6 +49,7 @@ const handler=(newBlog)=>{
     <h1 style={{padding:30}}>Add New Blog</h1>
       <BlogForm blog={blog} handler={handler} />
     </div>
+    </>
   )
 }
 

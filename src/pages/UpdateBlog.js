@@ -5,6 +5,7 @@ import BlogForm from "../components/BlogForm";
 import img from "../assets/newblog.png"
 // import placeholderPng from "../assets/bloglogo.png";
 import {successNote} from "../helper/toastNotify"
+import SearchBar from "../components/SearchBar";
 
 const UpdateBlog = ({ item }) => {
   const navigate = useNavigate();
@@ -36,6 +37,8 @@ useEffect(() => {
   }
 
   return (
+    <>
+    <SearchBar/>
     <div style={{
       backgroundImage: `url(${img})`,
       backgroundRepeat: " no-repeat",
@@ -50,6 +53,7 @@ useEffect(() => {
         </h1>
         <BlogForm blog={updatedBlog} handler={handler} />
     </div>
+    </>
   );
 };
 

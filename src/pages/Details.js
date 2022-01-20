@@ -8,6 +8,7 @@ import { useBlog } from "../contexts/BlogContext";
 import moment from "moment";
 import { successNote } from "../helper/toastNotify";
 import {FaRegUserCircle} from "react-icons/fa"
+import SearchBar from "../components/SearchBar";
 
 export default function Details() {
  
@@ -29,6 +30,8 @@ export default function Details() {
   };
 
   return (
+    <>
+    <SearchBar/>
     <Container className="pt-5" style={{minHeight:"80vh"}}>
       {currentBlogs?.filter((item)=>item.id===id).map((item, index) => (
          <Container key={index} className="text-center mt-4">
@@ -77,5 +80,6 @@ export default function Details() {
        </Container>
         ))}
     </Container>
+    </>
   );
 }

@@ -1,46 +1,11 @@
-import { useEffect, useState } from "react";
 import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import BlogCard from "./BlogCard";
-import { useBlog } from "../contexts/BlogContext";
-import Grid from "@mui/material/Grid";
-import SearchList from "./SearchList";
-// import AuthContext from "../contexts/AuthContext";
 
-const SearchBar = ({ item }) => {
+
+const SearchBar = ({handleChange }) => {
   const navigate = useNavigate();
-  const [searchField, setSearchField] = useState("");
-  const [searchShow, setSearchShow] = useState(false);
-  const { currentBlogs } = useBlog();
-  // const {currentUser}= useContext(AuthContext)
 
-
-    const filteredList = currentBlogs?.filter((item) => {
-      return item.title
-        .toLocaleLowerCase()
-        .includes(searchField.toLocaleLowerCase());
-    });
-    console.log(filteredList);
-
-    const handleChange= e =>{
-      setSearchField(e.target.value);
-      if(e.target.value===""){
-        setSearchShow(false);
-      }
-      else {
-        setSearchShow(true);
-      }
-
-    }
-
-    function searchItem() {
-      if (searchShow) {
-        return <SearchList filteredList={filteredList} />;
-      }
-    }
-
-    return (
-      <>
+        return (
         <Navbar
           expand="lg"
           style={{
@@ -78,22 +43,21 @@ const SearchBar = ({ item }) => {
             <FormControl
               type="search"
               placeholder="Search a blog"
-              className="me-2"
+              className="me-3"
               aria-label="Search"
+              style={{width:300}}
               onChange={handleChange}
             />
-            <Button
+            {/* <Button
               style={{ marginRight: 20 }}
               variant="outline-secondary"
-              // onSubmit={handleSubmit}
+              onClick={handleChange}
             >
               Search
-            </Button>
+            </Button> */}
           </Form>
         </Navbar>
-        <div>{searchItem()}</div>
-      </>
     );
-  }
+}
 
 export default SearchBar;

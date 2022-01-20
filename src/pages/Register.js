@@ -15,6 +15,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth} from "../helper/firebase";
 import { useNavigate } from "react-router-dom";
 import { successNote } from '../helper/toastNotify';
+import SearchBar from '../components/SearchBar';
 
 
 const theme = createTheme();
@@ -49,6 +50,8 @@ const handleSubmit = async ()=>{
   // };
 
   return (
+    <>
+    <SearchBar/>
       <div style={{backgroundImage:`url(${img})`,
     backgroundRepeat:" no-repeat",
     backgroundSize: "100% 120%",
@@ -137,5 +140,6 @@ const handleSubmit = async ()=>{
       </Container>
     </ThemeProvider>
     </div>
+    </>
   );
 }

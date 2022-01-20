@@ -1,9 +1,12 @@
 import { Col, Row, Container } from "react-bootstrap";
 import image from "../assets/about.png";
+import SearchBar from "../components/SearchBar";
 
 const About = () => {
   return (
-    <Container style={{minHeight:620}} className="text-center mt-4">
+    <>
+    <SearchBar/>
+    <Container style={{minHeight:"70vh"}} className="text-center mt-4">
       <Row>
         <Col>
           <img className="pt-4" src={image} style={{height:500, width:900
@@ -21,6 +24,7 @@ const About = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

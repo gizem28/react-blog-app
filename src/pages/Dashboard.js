@@ -16,7 +16,7 @@ const Dashboard = () => {
           <Grid
             item
             xs={12}
-            style={{ textAlign: "center", minHeight: "300px" }}
+            style={{ textAlign: "center", minHeight: "55vh" }}
           >
             <CircularProgress style={{ color: "#977278" }} />
           </Grid>
