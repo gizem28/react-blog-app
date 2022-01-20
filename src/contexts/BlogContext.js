@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState, useContext} from "react";
-import {db} from "../helper/firebase";
 import { getDatabase,ref,push,set, onValue,query, remove
 ,update, child} from "firebase/database"
 
@@ -71,8 +70,6 @@ const addBlog=(info)=>{
   // updates['/user-blog/' + id + '/' + newPostKey] = postData;
   // return update(ref(db), updates);
   // }
-
-
 
   //send data to Firebase
     useEffect(()=>{

@@ -27,8 +27,12 @@ const Dashboard = () => {
             </Grid>
           ))
         ) : (
-          <h3>No blogs found.</h3>
-        )}
+          <h3>No blogs found.</h3>)}
+         {/* {searchList?.map((item, id)=>{
+          return(<Grid key={id} item xs={12} md={4} marginBottom={2}>
+           <BlogCard item={item}/>
+         </Grid>)
+         })} */}
       </Grid>
     </>
   );

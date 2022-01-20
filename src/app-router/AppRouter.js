@@ -7,7 +7,7 @@ import Register from "../pages/Register";
 import Contact from "../pages/Contact";
 import MyNav from "../components/MyNavbar";
 import Footer from "../components/Footer";
-import SearchBar from "../components/SearchBar";
+// import SearchBar from "../components/SearchBar";
 import PrivateRouter from "./PrivateRouter";
 import Details from "../pages/Details";
 import NewBlog from "../pages/NewBlog";
@@ -17,7 +17,6 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <MyNav />
-      <SearchBar />
       <Routes>
       <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About />} />
