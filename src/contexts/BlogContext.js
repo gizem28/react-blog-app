@@ -30,13 +30,24 @@ export function BlogContextProvider({children}){
   }
 
   //update data
-  function updateBlog(id, info){
-    db = getDatabase();
-    const newUserKey=push(child(ref(db),"blog/")).key;
-    const updates={};
-    updates["blog/"+newUserKey]=info;
-    return update(ref(db),updates);
+  function updateBlog(id, data) {
+    const db = getDatabase();
+    const contactRef = db.ref("blog/").child(id);
+    // const contactRef=(ref(db, "blog/"+id))
+    update(getDatabase().ref("blog/").child(id));
   }
+  // function updateBlog(id, title, content, imageUrl){
+  //   db = getDatabase();
+  //   const postData={
+  //     title:title,
+  //     content:content,
+  //     imageUrl:imageUrl
+  // }
+  //   const newUserKey=push(child(ref(db),"blog")).key;
+  //   const updates={};
+  //   updates["/blog/"+newUserKey]=postData;
+  //   return update(ref(db),updates);
+  // }
 
   //send data to Firebase
     useEffect(()=>{
