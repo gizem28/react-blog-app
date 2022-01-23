@@ -1,4 +1,4 @@
-import { Button, FormControl, Nav, Navbar, Form } from "react-bootstrap";
+import {FormControl, Nav, Navbar, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 
@@ -19,9 +19,10 @@ const SearchBar = ({handleChange }) => {
         >
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
+            // style={{ maxHeight: "100px" }}
           >
+            <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
             <Nav.Link
               className="link"
               eventKey="about"
@@ -35,6 +36,8 @@ const SearchBar = ({handleChange }) => {
             <Nav.Link className="link" eventKey="contact">
               Contact Us
             </Nav.Link>
+            </Nav>
+            </Navbar.Collapse>
           </Nav>
           <Form
             className="d-flex"
