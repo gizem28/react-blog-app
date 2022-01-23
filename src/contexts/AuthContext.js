@@ -2,7 +2,6 @@ import React from 'react';
 import { createContext, useState, useEffect, useContext } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../helper/firebase';
-import { useNavigate } from 'react-router';
 
 //context context for autentication data
 export const AuthContext =createContext()
