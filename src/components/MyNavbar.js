@@ -18,7 +18,7 @@ const MyNav = () => {
     //logoya tiklayan olursa eger home sayfasinda degilse home gec
     <Navbar
       expand="lg"
-      style={{ height: 90, marginBottom: 0, backgroundColor: "#FCF9F4" }}
+      style={{backgroundColor: "#FCF9F4" }}
       onSelect={(eventKey) =>
       eventKey === "home" ? navigate("/") : navigate(`/${eventKey}`)
       }>
@@ -27,6 +27,9 @@ const MyNav = () => {
       </Nav.Link>
       <Nav className="ms-auto">
         { user ? (<Nav className="h5 p-4">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="me-auto">
         <NavLink
         style={{fontWeight: "bold", color: "#977251" }}
         onClick={signOutFunc}>
@@ -36,6 +39,9 @@ const MyNav = () => {
         eventKey="newblog">
           New Blog
           </NavLink>
+          </Nav>
+          </Navbar.Collapse>
+         
           </Nav>):
           (<NavDropdown
             className="h4"

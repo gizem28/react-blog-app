@@ -17,10 +17,9 @@ const SearchBar = ({handleChange }) => {
             navigate(`/${eventKey}`);
           }}
         >
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            // style={{ maxHeight: "100px" }}
-          >
+          <Navbar.Toggle aria-controls="basic-navbar-nav" 
+           className="m-2"
+          />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
             <Nav.Link
@@ -38,7 +37,6 @@ const SearchBar = ({handleChange }) => {
             </Nav.Link>
             </Nav>
             </Navbar.Collapse>
-          </Nav>
           <Form
             className="d-flex"
             // onSubmit={handleSubmit}
