@@ -11,8 +11,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img from "../assets/register.png";
 import {useState} from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth} from "../helper/firebase";
+import { createUserWithEmailAndPassword, updateProfile, getAuth } from "firebase/auth";
+// import { auth} from "../helper/firebase";
 import { useNavigate } from "react-router-dom";
 import { successNote } from '../helper/toastNotify';
 import SearchBar from '../components/SearchBar';
@@ -30,24 +30,31 @@ const [password, setPassword]= useState();
 
 const handleSubmit = async ()=>{
   const displayName = firstName+" "+lastName;
-  try{
-    await createUserWithEmailAndPassword(auth,email, password);
-    await updateProfile(auth.user, {displayName:displayName});
+//   try{
+//     await createUserWithEmailAndPassword(auth,email, password);
+//     await updateProfile(auth.user, {displayName:displayName});
+//     navigate("/");
+//     successNote("Register Successfully performed!")
+//   }catch(err){
+//     alert(err.message);
+//   }
+// };
+
+const auth = getAuth();
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    updateProfile(auth.user, {displayName:displayName});
     navigate("/");
     successNote("Register Successfully performed!")
-  }catch(err){
-    alert(err.message);
-  }
-};
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   // eslint-disable-next-line no-console
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
+    // const user = userCredential.user;
+  })
+  .catch((error) => {
+    // const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+  });}
+ 
 
   return (
     <>
